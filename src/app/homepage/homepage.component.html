@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div *ngIf="readLocalStorage('isLoggedIn') == 'true'">
+    <div class="loginStyle">
+      <h1>Angular Diary</h1>
+      <h3>Welcome {{userName}}!</h3>
+    </div>
+    <img style="width: 355px;" src="assets/img/greeting.gif" alt="greeting">
+  </div>
+  <div *ngIf="readLocalStorage('isLoggedIn') == 'false'">
+    <div class = "card container-fluid rounded">
+      <h1 class="pt-3">Angular Diary</h1>
+      <div class="card-header p-3">
+        <h3 style="text-align: center;">{{formName}}</h3>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="feedbackForm" class="d-flex flex-column justify-content-center">
+          <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input type="text" id="txtEmail" class="form-control" formControlName="_email">
+            <div *ngIf="feedbackForm.controls['_email'].invalid &&
+          (feedbackForm.controls['_email'].touched || feedbackForm.controls['_email'].dirty)">
+              <small class="text-danger" *ngIf="feedbackForm.controls['_email'].errors.required">Email is
+                required</small>
+              <small class="text-danger" *ngIf="feedbackForm.controls['_email'].errors.email">Email must be
+                valid </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input type="text" id="txtPassword" name="password" class="form-control" formControlName="_password">
+            <div *ngIf="getPassword().invalid && (getPassword().touched || getPassword().dirty)">
+              <small *ngIf="getPassword().errors.required" class="text-danger">Password is required</small>
+            </div>
+          </div>
+
+          <button id="btnSubmit" name="btnSubmit" [disabled]="feedbackForm.invalid" type="submit"
+                  class="btn btn-primary" (click)="btnSubmit_click()">Log In</button>
+          <small class="text-danger" id="loginErrorMessage"></small>
+        </form>
+
+        </div>
+        <div class="card-footer">
+          <p>Don't you have an account?</p>
+          <p>Click Sign Up button!</p>
+          <a routerLink="signup"><button type="button" id="btnSignup" class="btn btn-primary">Join</button></a>
+        </div>
+    </div>
+
+
+  </div>
+</div>

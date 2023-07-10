@@ -1,0 +1,11 @@
+:root {
+  /* main color of my application */
+  --yellow: #ffe812;
+  --brown: #5c4847;
+  --light-yellow: #f7efa5;
+  --white: #f4f4f4;
+  /* --tomato: tomato; */
+  --default-padding: 25px;
+  --default-border: 1px solid rgba(0, 0, 0, 0.2);
+  --blur-string: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,79 @@
+<div class = "card container-fluid rounded">
+  <div class="card-header">
+    <h3>{{formName}}</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="signUpForm">
+      <div class="form-group">
+        <label for="txtName">Name</label>
+        <input type="text" id="txtName" name="txtName" class="form-control" formControlName="_name">
+        <div *ngIf="signUpForm.get('_name').invalid &&
+          (signUpForm.get('_name').touched || signUpForm.get('_name').dirty)">
+          <small *ngIf="signUpForm.get('_name').errors.required" class="text-danger">Name is required</small>
+          <small *ngIf="signUpForm.get('_name').errors.minlength" class="text-danger">Enter at least 2 characters</small>
+          <small *ngIf="getName().errors.maxlength" class="text-danger">Enter less than 20 characters</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="authId">Your Authority</label>
+        <select name="authId" id="authId" class="form-control" formControlName="_authId">
+          <option value="1">Admin</option>
+          <option value="2">Customer</option>
+        </select>
+        <div *ngIf="signUpForm.controls['_authId'].invalid &&
+          (signUpForm.controls['_authId'].touched || signUpForm.controls['_authId'].dirty)">
+          <small class="text-danger" *ngIf="signUpForm.controls['_authId'].errors.required">Authority is
+            required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtEmail">Email</label>
+        <input (change)="onEmailChange()" type="text" id="txtEmail" class="form-control" formControlName="_email">
+        <div *ngIf="signUpForm.controls['_email'].invalid &&
+          (signUpForm.controls['_email'].touched || signUpForm.controls['_email'].dirty)">
+          <small class="text-danger" *ngIf="signUpForm.controls['_email'].errors.required">Email is
+            required</small>
+          <small class="text-danger" *ngIf="signUpForm.controls['_email'].errors.email">Email must be
+            valid </small>
+        </div>
+        <button id="btnCheckEmail" name="btnCheckEmail" [disabled]="signUpForm.controls['_email'].invalid" type="button"
+                class="btn btn-primary mt-3 mr-3" (click)="btnCheckEmail_click()">Check Duplication</button>
+
+        <img id="duplicateFlag" src="">
+      </div>
+
+      <div class="form-group" formGroupName="passwordGroup">
+        <div class="form-group">
+          <label for="txtPassword">Password</label>
+          <input type="text" id="txtPassword" name="password" class="form-control" formControlName="_password">
+          <div *ngIf="getPassword().invalid && (getPassword().touched || getPassword().dirty)">
+            <small *ngIf="getPassword().errors.required" class="text-danger">Password is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtVerifyPassword">Verify Password</label>
+        <input type="text" id="txtVerifyPassword" name="txtVerifyPassword" class="form-control" formControlName="_verifyPassword">
+        <div *ngIf="getVerifyPassword().invalid && (getVerifyPassword().touched || getVerifyPassword().dirty)">
+          <small *ngIf="getVerifyPassword().errors.required" class="text-danger">Verify password is required</small>
+        </div>
+      </div>
+
+      <div *ngIf="signUpForm.get('passwordGroup').invalid &&
+        getPassword().touched && getVerifyPassword().touched">
+        <small *ngIf="signUpForm.get('passwordGroup').errors.passwordMismatchError" class="text-danger">Password mismatch error</small>
+      </div>
+    </div>
+
+      <button id="btnSubmit" name="btnSubmit" [disabled]="signUpForm.invalid" type="submit"
+              class="btn btn-primary" (click)="btnSubmit_click()">Save</button><br>
+      <small id="checkEmailMessage" class="text-danger"></small>
+    </form>
+
+  </div>
+  <div class="card-footer">
+  </div>
+</div>
+

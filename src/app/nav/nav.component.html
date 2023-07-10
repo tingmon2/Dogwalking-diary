@@ -1,0 +1,12 @@
+<div class="container mb-5 border-bottom border-top border-success">
+  <nav class="navbar navbar-expand-lg navbar-light w-100">
+    <a class="navbar-brand text-danger" routerLink="home" >{{title}}</a>
+    <div class="d-flex flex-row"><br>
+      <a class="nav-item nav-link p-2" routerLink="add">Add</a>
+      <a class="nav-item nav-link p-2" routerLink="show">Show</a>
+      <a class="nav-item nav-link p-2" routerLink="about">About</a>
+      <a *ngIf="readLocalStorage('isLoggedIn') == 'true'" routerLink="home" class="nav-item nav-lin p-2" (click)="logOut()">Logout</a>
+    </div>
+  </nav>
+</div>
+

@@ -1,0 +1,15 @@
+.card{
+  background-color: #5c4847;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+h2{
+  text-align: center;
+}
+.adminMode{
+  color: #5c4847;;
+}
+li{
+  color: #f4f4f4;
+  background-color: #5c4847;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}

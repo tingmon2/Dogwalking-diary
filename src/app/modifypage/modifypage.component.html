@@ -1,0 +1,40 @@
+<div class="m-4" *ngIf="readLocalStorage('isLoggedIn') == 'true'">
+  <div class="card">
+    <div class="card-header">
+      <h2>Modify Diary</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="diaryEditForm">
+        <div class="form-group">
+          <label for="txtDate">Date</label>
+          <input id="txtDate" type="date" class="form-control" formControlName="_date">
+          <div *ngIf="getDate().invalid && (getDate().touched || getDate().dirty)">
+            <small *ngIf="getDate().errors.required" class="text-danger">Select Date</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="txtTitle">Title</label>
+          <input id="txtTitle" type="text" class="form-control" formControlName="_title">
+          <div *ngIf="getTitle().invalid && (getTitle().touched || getTitle().dirty)">
+            <small *ngIf="getTitle().errors.required" class="text-danger">Title is required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="txtContent">Content</label>
+          <textarea id="txtContent" rows="10" cols="10" class="form-control" formControlName="_content"></textarea>
+        </div>
+
+        <button type="button" id="btnUpdate" class="btn btn-primary" [disabled]="diaryEditForm.invalid" (click)="btnUpdate_click()">
+          Update
+        </button>
+        <button type="button" id="btnCancel" class="btn btn-danger ml-3"  (click)="btnCancel_click()">
+          Cancel
+        </button>
+      </form>
+    </div>
+    <div id="mapContainer" style="width: 330px; height: 330px;"></div>
+  </div>
+</div>
+

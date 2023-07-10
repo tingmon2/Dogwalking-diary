@@ -1,0 +1,31 @@
+<div class="m-4" *ngIf="readLocalStorage('isLoggedIn') == 'true'">
+    <div class="adminMode">
+      <h2 *ngIf="userAuth == 'true'">{{admin}}</h2>
+    </div>
+    <div class="card rounded">
+        <div class="card-header">
+          <h2>{{name}}</h2>
+          <h2>Diary Record</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li *ngFor="let diary of diaries" class="list-group-item w-100">
+                    <span class="mb-4">Title: {{diary.title}}</span><br>
+                    <span class="mb-4">Date: {{diary.date}}</span><br>
+                    <span *ngIf="userAuth == 'true'" class="mb-4">User ID: {{diary.userId}}</span><br>
+                    <button type="button" id="btnModify" class="btn btn-primary btn-sm mr-4" (click)="btnModify_click(diary)">
+                        Modify
+                    </button>
+
+                    <button type="button" id="btnDelete" class="btn btn-danger btn-sm mr-4" (click)="btnDelete_click(diary)">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+</div>
+

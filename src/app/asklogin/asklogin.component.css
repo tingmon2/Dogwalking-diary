@@ -1,0 +1,11 @@
+.container-fluid{
+  color:#5c4847;
+}
+h2, h3{
+  text-align: center;
+}
+.x-image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
